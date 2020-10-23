@@ -1,0 +1,327 @@
+<?php
+/**
+ * Modelo estudiante
+ */
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * Class Student
+ * Gestiona la información relativa a un estudiante
+ * @package App
+ */
+
+class Student extends Model
+{
+    /**
+     * Filliable
+     *
+     *  Datos que Eloquent puede tratar sobre el objeto
+     * @var array
+     */
+
+
+    public $timestamps = false;
+    protected $fillable = [
+        'apellidos', 'nre', 'vehiculo', 'domicilio', 'status', 'edad',
+    ];
+
+    /** RELACIONES **/
+
+    /**
+     * User
+     * Un estudiante pertenece a un usuario
+     * @return mixed
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Selections
+     * Un estudiante puede estar suscrito a varias ofertas
+     * @return mixed
+     */
+    public function selections()
+    {
+        return $this->hasMany('App\OfferSelection');
+    }
+
+    /**
+     * SelectionsPositive
+     *
+     * Un estudiante puede tener varias ofertas aceptadas
+     * @return mixed
+     */
+
+    public function selectionsPositive()
+    {
+        return $this->hasMany('App\OfferSelection')->where("student_id",$this->id)->where("answer","1");
+    }
+
+    /**
+     * SelectionsPending
+     *
+     * Un estudiante puede tener varias ofertas pendientes
+     * @return mixed
+     */
+    public function selectionsPending()
+    {
+        return $this->hasMany('App\OfferSelection')->where("student_id",$this->id)->where("answer","2");
+    }
+
+    /**
+     * Selections Negative
+     * Un estudiante puede tener varias ofertas con respuesta negativa
+     * @return mixed
+     */
+
+    public function selectionsNegative()
+    {
+        return $this->hasMany('App\OfferSelection')->where("student_id",$this->id)->where("answer","0");
+    }
+
+
+    /**
+     * Suscriptions
+     *
+     * Un estudiante
+     * @return mixed
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany('App\OfferSubscription');
+    }
+
+    /**
+     * Cicles
+     * Un estudiante puede pertenecer a varios ciclos
+     * @return mixed
+     */
+    public function cicles()
+    {
+        return $this->belongsToMany('App\Cicle', 'student_courses', 'student_id', 'cicle_id')->withPivot('cicle_id', 'promocion');
+    }
+
+
+    /** SETTERS **/
+
+    /**
+     * Vehiculo
+     *
+     * Establece si el estudiante dispone, o no, de vehiculo.
+     * @param $value atributo, 1
+     */
+    public function setVehiculoAttribute($value)
+    {
+        if (trim($value) != '') {
+            $this->attributes['vehiculo'] = $value;
+        } else {
+            $this->attributes['vehiculo'] = 0;
+        }
+    }
+
+    public function getEmailAttribute()
+    {
+        return $this->user->email;
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->user->name;
+    }
+
+    public function getPhoneAttribute()
+    {
+        return $this->user->phone;
+    }
+
+
+
+
+
+
+    /** SCOPES **/
+
+    /**
+     * Search
+     * Busca si no exise un scope más específico
+     * @param $query consulta
+     * @param Request $request datos a comprar en la búsqueda
+     */
+    public function scopeSearch($query, Request $request)
+    {
+        //Analizo si tiene método de búsqueda y si tiene el campo search
+        if($request->has("method") && $request->has("search")){
+
+            if(trim($request->get("search")) != ''){
+
+                //Asignación del término de búsqueda. El use no permite métodos.
+                $search = $request->get("search");
+
+
+                //Hago un switch con los métodos de búsqueda (Por nombre, apellidos, nrp, etc) y ejecuto el scope con el campo búsqueda
+                switch ($request->get("method")){
+
+                    case "name":
+                        //Refactorizar
+                        $query->with("user")->whereHas('user', function($q) use ($search)
+                        {
+                            $q->Name($search);
+
+                        });
+                        break;
+
+                    case "nre":
+                        //usar this->scopeNre
+                        $query->where('nre','LIKE',"%".$search."%");
+
+                        break;
+
+                    case "status":
+                        //usar this->scopeStatus
+                        $query->where('status','=',"$search");
+
+                        break;
+
+                    case "email":
+                        //Refactorizar
+                        $query->with("user")->whereHas('user', function($q) use ($search)
+                        {
+                            $q->Email($search);
+                        });
+
+                        break;
+
+                }
+
+            }
+
+
+        }
+    }
+
+    /**
+     * Apellido
+     * Busca por apellido
+     * @param $query consulta
+     * @param $apellido apellido a comprarar
+     */
+
+    public function scopeApellido($query, $apellido)
+    {
+
+    }
+
+    /**
+     * NRE
+     *
+     * Busca en base al NRE del estudiante
+     *
+     * @param $query consulta
+     * @param $nre NRE
+     */
+    public function scopeNre($query, $nre)
+    {
+
+    }
+    /**
+     * Vehiculo
+     * Busca en base al criterio de tener vehiculo
+     * @param $query consulta
+     * @param $vehiculo vehiculo
+     */
+
+    //Scope para el vehiculo del alumno
+    public function scopeVehiculo($query, $vehiculo)
+    {
+
+    }
+
+    /**
+     * Domicilio
+     *
+     * Busca en base al domicilo
+     *
+     * @param $query consulta
+     * @param $domicilio domicilio
+     */
+    public function scopeDomicilio($query, $domicilio)
+    {
+
+    }
+
+
+    /**
+     * Status
+     * Busca en base al estado
+     * @param $query consulta
+     * @param $status estado
+     */
+    public function scopeStatus($query, $status)
+    {
+
+    }
+
+    /**
+     * Busca en base a la edad
+     * @param $query consulta
+     * @param $edad edad
+     */
+    public function scopeEdad($query, $edad)
+    {
+
+    }
+
+    /**
+     * Datos
+     * Busca en base a los apellidos o al domicilio
+     *
+     * @param $query consulta
+     * @param $datos datos
+     * @return mixed
+     */
+    public function scopeDatos($query, $datos)
+    {
+
+        //Cambiar
+        return $query->orWhere('apellidos', 'like', "%" . $datos . "%")
+            ->orWhere('domicilio', 'like', "%" . $datos . "%");
+
+    }
+
+    /**
+     * No activos
+     * Busca estudiantes no activos
+     * @param $query
+     */
+
+    public function scopeNoActive($query)
+    {
+        $query->with("user")->whereHas('user', function ($q) {
+            //Reutilizo el scopeActive del modelo User.
+            $q->Active(0);
+        });
+    }
+
+    /**
+     *  activos
+     * Busca estudiantes activos
+     * @param $query
+     */
+
+    public function scopeActive($query)
+    {
+        $query->with("user")->whereHas('user', function ($q) {
+            //Reutilizo el scopeActive del modelo User.
+            $q->Active(1);
+        });
+    }
+
+
+}

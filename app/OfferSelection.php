@@ -1,0 +1,84 @@
+<?php
+/**
+ * Modelo Oferta en selección
+ */
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class OfferSelection
+ *
+ * Gestiona la información de las relaciones en bbdd y filtros de búsuqeda.
+ *
+ * @package App
+ */
+
+class OfferSelection extends Model
+{
+
+    protected $fillable =[
+        'offer_id',"student_id","teacher_id","answer"
+    ];
+
+    /** RELACIONES **/
+
+    /**
+     * Teacher
+     *
+     * Una oferta pertenece a un usuario profesor
+     * @return mixed
+     */
+    public function teacher()
+    {
+        return $this->belongsTo('App\Teacher');
+    }
+
+    /**
+     * Oferta
+     * Una oferta  selec pertenece a una oferta
+     * @return mixed
+     */
+    public function offer()
+    {
+        return $this->belongsTo('App\Offer');
+    }
+
+    /**
+     * Estudiante
+     * una oferta selec pertenece a un estudiante
+     * @return mixed
+     */
+    public function student()
+    {
+        return $this->belongsTo('App\Student');
+    }
+
+    /**
+     * Pregunta
+     * una oferta s tiene una respuesta
+     * @return mixed
+     */
+
+    public function answer()
+    {
+        return $this->hasOne('App\SelectionAnswer');
+    }
+
+
+    /** SCOPES **/
+
+    /**
+     * Pendiente
+     * Búsqueda en base a su estado pendiente
+     * @param $query consulta que será modificada
+     *
+     */
+    public function scopeAuthPending($query)
+    {
+
+        return $query->where('student_id',auth()->user()->student->id)->where("answer","2");
+    }
+    
+}

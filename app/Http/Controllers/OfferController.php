@@ -1,0 +1,420 @@
+<?php
+/**
+ *
+ * Controlador de Ofertas
+ *
+ * Gestiona la información relevante a las ofertas de empleo
+ *
+ *
+ */
+
+namespace App\Http\Controllers;
+
+
+/** REQUEST */
+use Illuminate\Http\Request;
+use App\Http\Requests\OfferStoreRequest;
+use App\Http\Requests\OfferUpdateRequest;
+
+/** MODELOS */
+use App\Enterprise;
+use App\Offer;
+use App\OfferSelection;
+use App\OfferSubscription;
+use App\Student;
+use App\Cicle;
+use App\Family;
+
+/** MAILS */
+use App\Mail\OffertAssigned;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OfferCV;
+
+/** OTROS */
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
+
+use Faker\Factory as Faker;
+use Carbon\Carbon;
+use PhpParser\Node\Expr\Cast\Object_;
+use Illuminate\Support\Collection;
+
+
+/**
+ * Class OfferController
+ *
+ * Gestiona ofertas
+ * @package App\Http\Controllers
+ */
+
+class OfferController extends Controller
+{
+    /**
+     * Muestra el inicio de ofertas
+     *
+     * @param Illuminate\Http\Request $request trae los datos para la ordenación
+     * @var App\Family $families trae las familais
+     * @var App\Offer $offers trae las ofertas ordenadas y paginadas
+     * @var Faker $faker trae datos falsos para las citas
+     * @var object $quote citas falsas dentro del array 'quotes' en config
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $families = get_model_selectable_by_name(Family::all());
+        //$offers = Offer::search($request)->PorConfirmar()->orderBy("created_at","desc")->paginate(10);
+        $offers = Offer::search($request)->orderBy("created_at","desc")->paginate(10);
+        
+        $faker = Faker::create("es_ES");
+        $quote = $faker->randomElement(config("quotes"));
+
+        $dataMaxSalary = Offer::max("salary"); 
+        $dataFromSalary = (isset($request->salario)) ? explode(";", $request->salario)[0] : 0; 
+        $dataToSalary = (isset($request->salario)) ? explode(";", $request->salario)[1] : $dataMaxSalary; 
+ 
+        return view('offers.index',compact('offers','quote', 'families', "request", "dataMaxSalary", "dataToSalary", "dataFromSalary"));
+    }
+
+    /**
+     * Muestra el formulario para crear una nueva oferta
+     *
+     * @var Family $families trae el modelo para familais
+     *
+     * @var Enterprise $enterprises trae las empresas
+     * @var Object $opts contiene los datos secundarios
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->authorize('create',Offer::class);
+        $families = get_model_selectable_by_name(Family::all());
+
+        if (auth()->user()->rol == "is_admin"){
+            $enterprises = get_model_selectable_by_name(Enterprise::all());
+            $opts = compact("families","enterprises");
+        }else{
+            $opts = compact("families");
+        }
+
+        return view('offers.create', $opts);
+    }
+
+    /**
+     * Almacena una nueva oferta
+     *
+     * Valida los datos con el request apropiado y almacena.
+     *
+     *
+     * @param  \Illuminate\Http\Request $request trae los datos del formulario
+     *
+     * @var Offer $offer contenedor de la oferta
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(OfferStoreRequest $request)
+    {
+        $this->authorize('create',Offer::class);
+        //Crear OFERTA
+        $offer = new Offer;
+        //id del auth
+
+        if (auth()->user()->rol == "is_admin"){
+            $offer->enterprise_id = $request->get("enterprise_id");
+        }else{
+            $offer->enterprise_id = auth()->user()->enterprise->id;
+        }
+
+
+        $offer->requirements = $request->requirements;
+        $offer->recommended = $request->recommended;
+        $offer->description = $request->description;
+        $offer->title = $request->title;
+        $offer->work_day = $request->work_day;
+        $offer->schedule = $request->schedule;
+        $offer->contract = $request->contract;
+        $offer->salary = $request->salary;
+        $offer->status = "Pend_Validacion";
+        $offer->student_number = $request->student_number;
+        $offer->start_date = $request->start_date;
+        $offer->end_date = $request->end_date;
+        $offer->family_id = $request->family_id;
+
+        $respuesta = $offer->save();
+
+        //Crear y guardar los modelos de las relaciones
+        return redirect()->route("offers.index");
+    }
+
+    /**
+     * Muestra una oferta
+     *
+     * @param  \App\Offer $offer oferta a mostrar
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Offer $offer)
+    {
+        $this->authorize('view',$offer);
+        return view('offers.show',compact('offer'));
+    }
+
+    /**
+     * Muestra el formulario para editar una oferta
+     *
+     * @param  \App\Offer $offer oferta a ser editada
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Offer $offer)
+    {
+
+        $this->authorize('update',$offer);
+
+        $families = get_model_selectable_by_name(Family::all());
+        $enterprises = get_model_selectable_by_name(Enterprise::all());
+        return view('offers.edit',compact('offer', "families","enterprises"));
+    }
+
+    /**
+     * Actualiza una oferta en la base de datos
+     *
+     *
+     * @param  \Illuminate\Http\Request $request datos de la oferta
+     * @param  \App\Offer $offer oferta a ser modificada
+     * @return \Illuminate\Http\Response
+     */
+    public function update(OfferUpdateRequest $request, Offer $offer)
+    {
+        $this->authorize('update',$offer);
+        $offer->fill($request->only(["requirements", "recommended", "title", "work_day", "schedule", "contract", "start_date", "description", "salary", "student_number", "family_id"]));
+        $offer->status = "Pend_Validacion";
+        $offer->save();
+
+        return redirect()->route("offers.index");
+    }
+
+    /**
+     * Elimina una oferta de la bbdd
+     *
+     * @param  \App\Offer $offer oferta a ser eliminada
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Offer $offer)
+    {
+        $this->authorize('delete',$offer);
+        $offer->delete();
+
+        return redirect()->route("offers.index");
+    }
+
+    /**
+     * Inactive
+     *
+     * Mustra las ofertas marcadas como inactivas
+     * @return mixed
+     */
+
+    public function inactive()
+    {
+        $offers = Offer::NoActive()->get();
+        return view("offers.inactive",compact("offers"));
+    }
+
+    /**
+     * Activate
+     *
+     * Muestra los alumnos que no estan en la oferta para que puedan ser incluidos en esta
+     * @param Offer $offer oferta
+     * @var array $aux contiene los datos de los alumnos seleccionados ya en la oferta
+     * @var Student $student contiene los alumnos que No estan en la oferta
+     * @var Object $selected muestra los alumnos seleccionados dentro de la oferta
+     * @return mixed
+     */
+
+   public function activate(Offer $offer, Request $request)
+    {
+        //Asignamos la familia profesional, si el cliente ha puesto una para buscar en el filtro, buscaremos por esa, sino, por la offer->family_id
+        if($request->family == null)
+            $idFamily = $offer->family_id;
+        else
+            $idFamily = $request->family;
+
+        //Obtenemos todas las ofertas para pasarselas al select del filtro
+        
+        $families = get_model_selectable_by_name(Family::all());
+        //$families = get_model_selectable_by_name(auth()->user()->teacher->families);
+
+        Carbon::setLocale('es');
+        $aux = [];
+        //Mete en un array todos los ids de los estudiantes que ya estan en la oferta
+        foreach ($offer->selections as $selected) {
+            $aux[] = $selected->student->id;
+        }
+
+        //Selecciona todos los alumnos que no estén en aux (en la oferta) [40,120,10]
+        if($request->cicle == 0 || $request->cicle == null)
+            $family = Family::find($idFamily)->cicles()->get();
+        else
+            $family = Cicle::where("id", $request->cicle)->get();
+        //dd($family);
+
+        //Recogemos todos los estudiantes por ciclo que hayan coincidido con el profesor (promocion ciclo profesor = promocion ciclo alumno)
+        $studentsByCicle = [];
+        foreach($family as $cicle){
+            $studentsByCicle[] = ($cicle->students()->whereNotIn('students.id',$aux)->orderBy("apellidos"))->Active()->get();
+        }
+
+        
+        $allStudents = [];
+        foreach ($studentsByCicle as $studentByCicle) {
+            foreach($studentByCicle as $student){
+                array_push($allStudents, $student);
+            }
+        }
+
+        $students = Collection::make($allStudents);
+
+        $cicles = get_model_selectable_by_name(Family::find($idFamily)->cicles()->get());
+        $cicles["0"] = "Todos los ciclos";
+
+        //array_reverse, le da la vuelta al array, esto lo hacemos para que "Todos los ciclos" esté en primera posición, el segundo argumento, es $preserve_keys, que lo que hace cuando está true, es guardar las keys, y las asocia con sus datos, si no estubiese este argumento o estubiese en false, las ordenaría así: [0] => "...", [1] => "...", sin guardar la key, que ahora es necesario para guardar el Cicle_id
+        $cicles = array_reverse($cicles, true);
+
+        $selected = $offer->selections;
+
+        return view("offers.validate", compact("offer", "students","selected", "families", "idFamily", "cicles"));
+    }
+
+    /**
+     *
+     * Asignador de ofertas
+     *
+     * Asigna la oferta a uno, o varios alumnos, enviadno un email a éste para darle cuenta.
+     *
+     * @param Request $request Datos de los alumnos a los que se les asignará la oferta
+     * @param Offer $offer Oferta a ser asignada
+     *
+     *
+     * @return mixed
+     */
+
+    public function assign(Request $request, Offer $offer)
+    {
+        $teacher = auth()->user()->teacher;
+        if (count($request->get("students")) > 0) {
+            foreach ($request->get("students") as $studentRequested) {
+                //Encuentra el Alumno
+                $student = Student::findOrFail($studentRequested);
+
+                //Comprueba si ese alumno ya ha sido asignado a esa oferta
+                $selections = OfferSelection::where("offer_id",$offer->id)->where("student_id",$student->id)->get();
+                if ($selections->isEmpty()){
+                    $selections_opt = ["student_id" => $student->id, "offer_id" => $offer->id];
+                    $teacher->selections()->create($selections_opt)->save();
+                    //ENVIO DE CORREOS AQUÍ!
+                    Mail::to($student->user->email)->send(new OffertAssigned($student,$offer));
+                }
+            }
+
+        }
+
+        $offer->status = "Pend_Confirmacion";
+        $offer->save();
+
+        return redirect()->route("offers.activate",[$offer->id]);
+    }
+
+    /**
+     * Eliminar seleccionados
+     *
+     *Elimina los alumnos seleccionados de una oferta
+     *
+     * @param OfferSelection $selected alumnos seleccionados
+     * @return mixed
+     *
+     */
+
+    public function selectedDelete(OfferSelection $selected)
+    {
+        $id = $selected->offer->id;
+        $selected->delete();
+
+        return redirect()->route("offers.activate",$id);
+    }
+
+    /**
+     * Suscribir
+     * Suscribe al usuario logeado  una oferta
+     * @param Offer $offer oferta
+     * @return mixed
+     */
+
+    public function subscribe(Offer $offer)
+    {
+        if (!$offer->subscribed_by_auth){
+            auth()->user()->student->subscriptions()->create(["offer_id"=>$offer->id])->save();
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Desuscribir
+     * Elimina al usuario logeado de la suscripcion a una oferta
+     * @param Offer $offer oferta
+     * @return mixed
+     */
+
+    public function unsubscribe(Offer $offer)
+    {
+        if ($offer->subscribed_by_auth){
+            $sub = OfferSubscription::where("offer_id",$offer->id)->where("student_id",auth()->user()->student->id)->first();
+            $sub->delete();
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function proffer(OfferSelection $selection)
+    {
+
+        $offer = $selection->offer;
+        return view("offers.proffer",compact("offer","selection"));
+    }
+
+    /**
+     * Confirmación de asignación
+     * @param Request $request
+     * @param OfferSelection $selection
+     * @return mixed
+     */
+
+    public function answer(Request $request,OfferSelection $selection)
+    {
+
+        $answer = ($request->get("answer") != "NO")?"1":"0";
+        $selection->fill(["answer" => $answer])->save();
+
+        if ($answer == "1"){    //El estudiante ha decidido aceptar la oferta
+            if($request->get("optCV") == "Subir CV"){   //El estudiante ha decidido mandar el CV adjunto
+                if(isset($request->cv)){ //Ha adjuntado CV, procedemos a enviárselo a la empresa
+                    $pdf = $request->file("cv")->move(base_path().DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR);
+
+                    Mail::to($selection->offer->enterprise->user->email)->send(new OfferCV($selection->offer->enterprise->user,$selection->offer, $pdf));
+
+                    //TODO GUARDAR LA RUTA EN BD PARA UN FUTURO DARLE A ELEGIR AL USUARIO LOS PDFS QUE HA SUBIDO
+                    File::delete($pdf);
+                }
+            }
+            return redirect()->route("offers.show",$selection->offer->id);
+        }
+        else
+            return redirect()->route("home");
+    }
+}

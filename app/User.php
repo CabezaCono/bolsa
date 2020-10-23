@@ -1,0 +1,291 @@
+<?php
+/**
+ * Clase Usuario
+ */
+namespace App;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+/**
+ * Class User
+ * Gestiona la informacion relativa al usuario
+ *  @package App
+ */
+
+class User extends Authenticatable
+{
+
+    use Notifiable;
+    use SoftDeletes;
+
+
+    /**
+     * Filliable
+     *
+     *  Datos que Eloquent puede tratar sobre el objeto
+     * @var array
+     */
+
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    /**
+     * Hidden
+     * Atributos ocultos al obtener las propiedades del usuario
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * Variable para el soft delete
+     * @var array
+     */
+
+    protected $dates = ['deleted_at'];
+
+
+    /** RELACIONES **/ //Aquí las relaciones
+
+    /**
+     * Student
+     * Un Usuario tiene un estudiante
+     * @return mixed
+     */
+    public function student() {
+        return $this->hasOne('App\Student');
+    }
+    /**
+     * Teacher
+     * Un usuario tiene un profesor
+     * @return mixed
+     */
+
+
+    public function teacher()
+    {
+        return $this->hasOne('App\Teacher');
+    }
+
+    /**
+     * Validado por
+     * Un usuario tiene una unica validacion por parte de un profesor
+     * @return mixed
+     */
+    public function validatedBy()
+    {
+        return $this->hasOne('App\TeacherValidation');
+    }
+
+    /**
+     * Enterprise
+     * Un usuario puede ser una empresa
+     * @return mixed
+     */
+    public function enterprise()
+    {
+        return $this->hasOne('App\Enterprise');
+    }
+
+    /**
+     * Rol
+     * devuelve el rol del usuario
+     * @return string
+     */
+    public function rol() {
+        if($this->teacher) {
+            if($this->teacher->is_admin){
+                return "is_admin";
+            } else {
+                return "is_teacher";
+            }
+        } else if ($this->student) {
+            return "is_student";
+        } else if ($this->enterprise) {
+            return "is_enterprise";
+        }
+    }
+
+    /**
+     * RolE
+     * Devuelve el ROL del usuario, especificando si es profesor o administrador
+     * @return string
+     */
+    public function role() {
+        if($this->teacher) {
+            if($this->teacher->is_admin){
+                return "admin";
+            } else {
+                return "teacher";
+            }
+        } else if ($this->student) {
+            return "student";
+        } else if ($this->enterprise) {
+            return "enterprise";
+        }
+    }
+
+    /**
+     * getROL
+     * Devuelve el rol
+     * @return string
+     */
+
+    public function getRolAttribute()
+    {
+        return $this->rol();
+    }
+
+    /**
+     * getRolE
+     * Devuelve el RolE
+     * @return string
+     */
+
+    public function getRoleAttribute()
+    {
+        return $this->role();
+    }
+
+    public function isAdmin()
+    {
+        if ($this->teacher) {
+            if ($this->teacher->is_admin) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function isTeacher()
+    {
+        if ($this->teacher) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public
+    function isStudent()
+    {
+        if ($this->student) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public
+    function isEnterprise()
+    {
+        if ($this->enterprise) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /** SETTERS **/ //Aquí los setters
+
+    /**
+     * Actualiza el pwd
+     *
+     * Actualiza el pwd del usuario
+     * @param $value valor del nuevo pwd
+     */
+
+    //setter de Password de user
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
+
+
+    /** SCOPES **/
+
+
+    /**
+     * Nombre
+     *
+     * Busca en base al nombre
+     * @param $query consulta
+     * @param $name nombre a comprar
+     */
+    public function scopeName($query,$name)
+    {
+        if (trim($name) != '') {
+            $query->where('name', 'LIKE', "%$name%");
+        }
+
+    }
+
+    /**
+     * Busca en base al telefono
+     * @param $query consulta
+     * @param $telefono telefono a comparar
+     */
+    public function scopeTelefono($query,$telefono)
+    {
+        if (trim($telefono) != '') {
+            $query->where('phone', 'LIKE', "%$telefono%");
+        }
+    }
+    /**
+     * Busca en base al email
+     * @param $query consulta
+     * @param $email email a comparar
+     */
+
+    public function scopeEmail($query,$email)
+    {
+        if (trim($email) != '') {
+            $query->where('email', 'LIKE', "%$email%");
+        }
+    }
+    /**
+     * Busca usuarios segun si estan activos, o no.
+     * @param $query consuta
+     * @param $active estado
+     */
+
+    public function scopeActive($query,$active)
+    {
+        if (trim($active) != '') {
+            $query->where('is_active', '=', $active);
+        }
+    }
+
+    /**
+     * Busca en funcion del rol
+     *
+     * @param $query consulta
+     * @param $id     id de la tabla users, y nos devuelve un array de 2 índices, en la pos 0 el rol que es, y en la pos 1 el usuario y su relación
+
+     * @return array
+     */
+    public function scopeRol($query, $id) {
+
+        $q = $query->with('teacher', 'student', 'enterprise')->where('id', $id)->get();
+
+        if ($q[0]->teacher != null) {
+            $rol = "is_teacher";
+            $user = $q[0];
+        } else if ($q[0]->student != null) {
+            $rol = "is_student";
+            $user = $q[0];
+        } else if ($q[0]->enterprise != null) {
+            $rol = "is_enterprise";
+            $user = $q[0];
+        }
+
+        return [$rol, $user];
+    }
+}

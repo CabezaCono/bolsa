@@ -1,0 +1,78 @@
+#div-love-heart:hover #love-heart {
+    color: #dc3239;
+    transition: color 1s ease;
+}
+
+#love-heart {
+    color: #dc5d5d;
+    transition: color 3.5s ease;
+    transition-duration: 3s;
+}
+
+
+#fixed_footer {
+
+    position: fixed;
+
+}
+
+.logo sup {
+    left: 48.2%;
+    top: 12px;
+    color: #929292;
+    transition: color 0.5s ease;
+}
+
+.logo h1 {
+    color: #95abc0;
+    transition: color 0.5s ease;
+}
+
+.logo h1>.fa {
+    color: #4f596e;
+    transition: color 0.5s ease;
+}
+
+.logo:hover sup{
+    color: #6d6d6d;
+    transition: color 0.5s ease;
+}
+
+
+.logo:hover h1>.fa{
+    color: #73879c;
+    transition: color 0.5s ease;
+}
+
+#rocket {
+    color: rgba(46, 69, 92, 0.82);
+    font-size: 300px;
+
+}
+
+#forbidden-sign {
+    color: rgba(92, 0, 6, 0.51);
+    font-size: 150px;
+}
+
+#logo-error {
+    margin-top: 8%;
+}
+
+
+.tag-negative {
+    background-color: #BB1D1A;
+}
+.tag-negative:after {
+    content: " ";
+    height: 30px;
+    width: 0;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin: 0;
+    pointer-events: none;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 11px solid #BB1D1A;
+}

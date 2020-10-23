@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Compilation errors
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/App.html">\App</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">187</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                                                                                    <li><a href="#Console/Kernel.php"><i class="icon-file"></i> Console/Kernel.php</a></li>
+                                                                                                    <li><a href="#Enterprise.php"><i class="icon-file"></i> Enterprise.php</a></li>
+                                                                                                    <li><a href="#Exceptions/Handler.php"><i class="icon-file"></i> Exceptions/Handler.php</a></li>
+                                                                                                                                                            <li><a href="#helpers.php"><i class="icon-file"></i> helpers.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/Auth/ForgotPasswordController.php"><i class="icon-file"></i> Http/Controllers/Auth/ForgotPasswordController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/Auth/LoginController.php"><i class="icon-file"></i> Http/Controllers/Auth/LoginController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/Auth/RegisterController.php"><i class="icon-file"></i> Http/Controllers/Auth/RegisterController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/Auth/ResetPasswordController.php"><i class="icon-file"></i> Http/Controllers/Auth/ResetPasswordController.php</a></li>
+                                                                                                                                                            <li><a href="#Http/Controllers/Controller.php"><i class="icon-file"></i> Http/Controllers/Controller.php</a></li>
+                                                                                                                                                            <li><a href="#Http/Controllers/FamilyController.php"><i class="icon-file"></i> Http/Controllers/FamilyController.php</a></li>
+                                                                                                                                                            <li><a href="#Http/Controllers/OfferController.php"><i class="icon-file"></i> Http/Controllers/OfferController.php</a></li>
+                                                                                                                                                                                                                    <li><a href="#Http/Controllers/UserController.php"><i class="icon-file"></i> Http/Controllers/UserController.php</a></li>
+                                                                                                    <li><a href="#Http/Kernel.php"><i class="icon-file"></i> Http/Kernel.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/EncryptCookies.php"><i class="icon-file"></i> Http/Middleware/EncryptCookies.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/NoRolMiddleware.php"><i class="icon-file"></i> Http/Middleware/NoRolMiddleware.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/OneSelfMiddleware.php"><i class="icon-file"></i> Http/Middleware/OneSelfMiddleware.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/RedirectIfAuthenticated.php"><i class="icon-file"></i> Http/Middleware/RedirectIfAuthenticated.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/RolMiddleware.php"><i class="icon-file"></i> Http/Middleware/RolMiddleware.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/TrimStrings.php"><i class="icon-file"></i> Http/Middleware/TrimStrings.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/VerifyCsrfToken.php"><i class="icon-file"></i> Http/Middleware/VerifyCsrfToken.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/EnterpriseStoreRequest.php"><i class="icon-file"></i> Http/Requests/EnterpriseStoreRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/EnterpriseUpdateRequest.php"><i class="icon-file"></i> Http/Requests/EnterpriseUpdateRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/OfferStoreRequest.php"><i class="icon-file"></i> Http/Requests/OfferStoreRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/OfferUpdateRequest.php"><i class="icon-file"></i> Http/Requests/OfferUpdateRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/ProfessionalFamilyStoreRequest.php"><i class="icon-file"></i> Http/Requests/ProfessionalFamilyStoreRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/ProfessionalFamilyUpdateRequest.php"><i class="icon-file"></i> Http/Requests/ProfessionalFamilyUpdateRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/StudentStoreRequest.php"><i class="icon-file"></i> Http/Requests/StudentStoreRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/StudentUpdateRequest.php"><i class="icon-file"></i> Http/Requests/StudentUpdateRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/TeacherStoreRequest.php"><i class="icon-file"></i> Http/Requests/TeacherStoreRequest.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/TeacherUpdateRequest.php"><i class="icon-file"></i> Http/Requests/TeacherUpdateRequest.php</a></li>
+                                                                                                    <li><a href="#Mail/newOffertCreated.php"><i class="icon-file"></i> Mail/newOffertCreated.php</a></li>
+                                                                                                    <li><a href="#Mail/newOffertToValidate.php"><i class="icon-file"></i> Mail/newOffertToValidate.php</a></li>
+                                                                                                    <li><a href="#Mail/newRegisteredEnterprise.php"><i class="icon-file"></i> Mail/newRegisteredEnterprise.php</a></li>
+                                                                                                    <li><a href="#Mail/newRegisteredUser.php"><i class="icon-file"></i> Mail/newRegisteredUser.php</a></li>
+                                                                                                    <li><a href="#Mail/OfferCV.php"><i class="icon-file"></i> Mail/OfferCV.php</a></li>
+                                                                                                    <li><a href="#Mail/OffertAssigned.php"><i class="icon-file"></i> Mail/OffertAssigned.php</a></li>
+                                                                                                    <li><a href="#Mail/TeacherInvitation.php"><i class="icon-file"></i> Mail/TeacherInvitation.php</a></li>
+                                                                                                    <li><a href="#Mail/ValidationOk.php"><i class="icon-file"></i> Mail/ValidationOk.php</a></li>
+                                                                                                    <li><a href="#Offer.php"><i class="icon-file"></i> Offer.php</a></li>
+                                                                                                    <li><a href="#OfferSelection.php"><i class="icon-file"></i> OfferSelection.php</a></li>
+                                                                                                                                                            <li><a href="#Policies/CiclePolicy.php"><i class="icon-file"></i> Policies/CiclePolicy.php</a></li>
+                                                                                                    <li><a href="#Policies/EnterprisePolicy.php"><i class="icon-file"></i> Policies/EnterprisePolicy.php</a></li>
+                                                                                                    <li><a href="#Policies/FamilyPolicy.php"><i class="icon-file"></i> Policies/FamilyPolicy.php</a></li>
+                                                                                                    <li><a href="#Policies/OfferPolicy.php"><i class="icon-file"></i> Policies/OfferPolicy.php</a></li>
+                                                                                                    <li><a href="#Policies/StudentPolicy.php"><i class="icon-file"></i> Policies/StudentPolicy.php</a></li>
+                                                                                                    <li><a href="#Policies/TeacherPolicy.php"><i class="icon-file"></i> Policies/TeacherPolicy.php</a></li>
+                                                                                                    <li><a href="#Providers/AppServiceProvider.php"><i class="icon-file"></i> Providers/AppServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/AuthServiceProvider.php"><i class="icon-file"></i> Providers/AuthServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/BroadcastServiceProvider.php"><i class="icon-file"></i> Providers/BroadcastServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/EventServiceProvider.php"><i class="icon-file"></i> Providers/EventServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/RouteServiceProvider.php"><i class="icon-file"></i> Providers/RouteServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Student.php"><i class="icon-file"></i> Student.php</a></li>
+                                                                                                    <li><a href="#Teacher.php"><i class="icon-file"></i> Teacher.php</a></li>
+                                                                                                    <li><a href="#TeacherValidation.php"><i class="icon-file"></i> TeacherValidation.php</a></li>
+                                                                                                    <li><a href="#User.php"><i class="icon-file"></i> User.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li>Compilation Errors</li>
+            </ul>
+
+            
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Console/Kernel.php" id="Console/Kernel.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Console/Kernel.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Console\Kernel</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Enterprise.php" id="Enterprise.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Enterprise.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>85</td>
+                                        <td>Argument $value is missing from the Docblock of setScoreAttribute</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>85</td>
+                                        <td>No summary for method setScoreAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>93</td>
+                                        <td>No summary for method getEmailAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>98</td>
+                                        <td>No summary for method getPhoneAttribute()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Exceptions/Handler.php" id="Exceptions/Handler.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Exceptions/Handler.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Exceptions\Handler</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="helpers.php" id="helpers.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            helpers.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>447</td>
+                                        <td>Argument $obj is missing from the Docblock of get_model_all_id</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>447</td>
+                                        <td>No summary for function \get_model_all_id()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Auth/ForgotPasswordController.php" id="Http/Controllers/Auth/ForgotPasswordController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Auth/ForgotPasswordController.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Controllers\Auth\ForgotPasswordController</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Auth/LoginController.php" id="Http/Controllers/Auth/LoginController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Auth/LoginController.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Http\Controllers\Auth\LoginController</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>Argument $request is missing from the Docblock of credentials</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>No summary for method credentials()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Auth/RegisterController.php" id="Http/Controllers/Auth/RegisterController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Auth/RegisterController.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>10</td>
+                                        <td>No summary for class \App\Http\Controllers\Auth\RegisterController</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>73</td>
+                                        <td>No summary for method teacher()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>78</td>
+                                        <td>No summary for method enterprise()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>83</td>
+                                        <td>No summary for method student()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Auth/ResetPasswordController.php" id="Http/Controllers/Auth/ResetPasswordController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Auth/ResetPasswordController.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Controllers\Auth\ResetPasswordController</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Controller.php" id="Http/Controllers/Controller.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Controller.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>10</td>
+                                        <td>No summary for class \App\Http\Controllers\Controller</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/FamilyController.php" id="Http/Controllers/FamilyController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/FamilyController.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>141</td>
+                                        <td>Argument $family is missing from the Docblock of getCiclesByFamilyId</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>141</td>
+                                        <td>No summary for method getCiclesByFamilyId()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/OfferController.php" id="Http/Controllers/OfferController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/OfferController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/UserController.php" id="Http/Controllers/UserController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/UserController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>203</td>
+                                        <td>No summary for method settings()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Kernel.php" id="Http/Kernel.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Kernel.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Kernel</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/EncryptCookies.php" id="Http/Middleware/EncryptCookies.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/EncryptCookies.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Middleware\EncryptCookies</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/NoRolMiddleware.php" id="Http/Middleware/NoRolMiddleware.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/NoRolMiddleware.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Http\Middleware\NoRolMiddleware</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>Argument $request is missing from the Docblock of handle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>Argument $next is missing from the Docblock of handle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>Argument $rol is missing from the Docblock of handle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>No summary for method handle()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/OneSelfMiddleware.php" id="Http/Middleware/OneSelfMiddleware.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/OneSelfMiddleware.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Middleware\OneSelfMiddleware</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/RedirectIfAuthenticated.php" id="Http/Middleware/RedirectIfAuthenticated.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/RedirectIfAuthenticated.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Middleware\RedirectIfAuthenticated</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/RolMiddleware.php" id="Http/Middleware/RolMiddleware.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/RolMiddleware.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>14</td>
+                                        <td>No summary for class \App\Http\Middleware\RolMiddleware</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>Argument $request is missing from the Docblock of handle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>Argument $next is missing from the Docblock of handle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>Argument $rol is missing from the Docblock of handle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method handle()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/TrimStrings.php" id="Http/Middleware/TrimStrings.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/TrimStrings.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Middleware\TrimStrings</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/VerifyCsrfToken.php" id="Http/Middleware/VerifyCsrfToken.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/VerifyCsrfToken.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Middleware\VerifyCsrfToken</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/EnterpriseStoreRequest.php" id="Http/Requests/EnterpriseStoreRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/EnterpriseStoreRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Requests\EnterpriseStoreRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/EnterpriseUpdateRequest.php" id="Http/Requests/EnterpriseUpdateRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/EnterpriseUpdateRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Requests\EnterpriseUpdateRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/OfferStoreRequest.php" id="Http/Requests/OfferStoreRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/OfferStoreRequest.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Requests\OfferStoreRequest</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>10</td>
+                                        <td>No summary for method authorize()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>14</td>
+                                        <td>No summary for method rules()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/OfferUpdateRequest.php" id="Http/Requests/OfferUpdateRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/OfferUpdateRequest.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Requests\OfferUpdateRequest</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>10</td>
+                                        <td>No summary for method authorize()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>14</td>
+                                        <td>No summary for method rules()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/ProfessionalFamilyStoreRequest.php" id="Http/Requests/ProfessionalFamilyStoreRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/ProfessionalFamilyStoreRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Requests\ProfessionalFamilyStoreRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/ProfessionalFamilyUpdateRequest.php" id="Http/Requests/ProfessionalFamilyUpdateRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/ProfessionalFamilyUpdateRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Requests\ProfessionalFamilyUpdateRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/StudentStoreRequest.php" id="Http/Requests/StudentStoreRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/StudentStoreRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Requests\StudentStoreRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/StudentUpdateRequest.php" id="Http/Requests/StudentUpdateRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/StudentUpdateRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Requests\StudentUpdateRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/TeacherStoreRequest.php" id="Http/Requests/TeacherStoreRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/TeacherStoreRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Requests\TeacherStoreRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/TeacherUpdateRequest.php" id="Http/Requests/TeacherUpdateRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/TeacherUpdateRequest.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Requests\TeacherUpdateRequest</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/newOffertCreated.php" id="Mail/newOffertCreated.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/newOffertCreated.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>No summary for class \App\Mail\newOffertCreated</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>Argument $offert is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/newOffertToValidate.php" id="Mail/newOffertToValidate.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/newOffertToValidate.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>No summary for class \App\Mail\newOffertToValidate</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>Argument $offert is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/newRegisteredEnterprise.php" id="Mail/newRegisteredEnterprise.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/newRegisteredEnterprise.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>No summary for class \App\Mail\newRegisteredEnterprise</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>Argument $user is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/newRegisteredUser.php" id="Mail/newRegisteredUser.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/newRegisteredUser.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>No summary for class \App\Mail\newRegisteredUser</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>Argument $user is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for property $user</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/OfferCV.php" id="Mail/OfferCV.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/OfferCV.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/OffertAssigned.php" id="Mail/OffertAssigned.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/OffertAssigned.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>12</td>
+                                        <td>No summary for class \App\Mail\OffertAssigned</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>Argument $student is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>Argument $offer is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>No summary for property $student</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/TeacherInvitation.php" id="Mail/TeacherInvitation.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/TeacherInvitation.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>No summary for class \App\Mail\TeacherInvitation</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>Argument $doorman is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Mail/ValidationOk.php" id="Mail/ValidationOk.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Mail/ValidationOk.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>11</td>
+                                        <td>No summary for class \App\Mail\ValidationOk</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>Argument $user is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Offer.php" id="Offer.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Offer.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="OfferSelection.php" id="OfferSelection.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            OfferSelection.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>21</td>
+                                        <td>No summary for property $fillable</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Policies/CiclePolicy.php" id="Policies/CiclePolicy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Policies/CiclePolicy.php
+                            <small style="float: right;padding-right: 10px;">19</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Policies\CiclePolicy</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>14</td>
+                                        <td>Argument $user is missing from the Docblock of before</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>14</td>
+                                        <td>No summary for method before()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $teacher in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>30</td>
+                                        <td>Parameter $teacher could not be found in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>30</td>
+                                        <td>Parameter $cicle could not be found in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>46</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $teacher in create()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>46</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in create()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>46</td>
+                                        <td>Parameter $teacher could not be found in create()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>62</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $teacher in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>62</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>62</td>
+                                        <td>Parameter $teacher could not be found in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>62</td>
+                                        <td>Parameter $cicle could not be found in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>78</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $teacher in delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>78</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>78</td>
+                                        <td>Parameter $teacher could not be found in delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>78</td>
+                                        <td>Parameter $cicle could not be found in delete()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Policies/EnterprisePolicy.php" id="Policies/EnterprisePolicy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Policies/EnterprisePolicy.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Policies\EnterprisePolicy</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Policies/FamilyPolicy.php" id="Policies/FamilyPolicy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Policies/FamilyPolicy.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Policies\FamilyPolicy</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>20</td>
+                                        <td>Parameter $family could not be found in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>51</td>
+                                        <td>Parameter $family could not be found in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>67</td>
+                                        <td>Parameter $family could not be found in delete()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Policies/OfferPolicy.php" id="Policies/OfferPolicy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Policies/OfferPolicy.php
+                            <small style="float: right;padding-right: 10px;">15</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Policies\OfferPolicy</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>20</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $enterprise in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>20</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>20</td>
+                                        <td>Parameter $enterprise could not be found in view()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $enterprise in create()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in create()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>41</td>
+                                        <td>Parameter $enterprise could not be found in create()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>59</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $enterprise in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>59</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>59</td>
+                                        <td>Parameter $enterprise could not be found in update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>78</td>
+                                        <td>Name of argument $user does not match with the DocBlock&#039;s name $enterprise in delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>78</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $user in delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>78</td>
+                                        <td>Parameter $enterprise could not be found in delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>78</td>
+                                        <td>Parameter $offer could not be found in delete()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Policies/StudentPolicy.php" id="Policies/StudentPolicy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Policies/StudentPolicy.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Policies\StudentPolicy</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>77</td>
+                                        <td>Parameter $student could not be found in delete()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Policies/TeacherPolicy.php" id="Policies/TeacherPolicy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Policies/TeacherPolicy.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>9</td>
+                                        <td>No summary for class \App\Policies\TeacherPolicy</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/AppServiceProvider.php" id="Providers/AppServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/AppServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Providers\AppServiceProvider</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/AuthServiceProvider.php" id="Providers/AuthServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/AuthServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>No summary for class \App\Providers\AuthServiceProvider</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/BroadcastServiceProvider.php" id="Providers/BroadcastServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/BroadcastServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Providers\BroadcastServiceProvider</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/EventServiceProvider.php" id="Providers/EventServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/EventServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Providers\EventServiceProvider</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/RouteServiceProvider.php" id="Providers/RouteServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/RouteServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Providers\RouteServiceProvider</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Student.php" id="Student.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Student.php
+                            <small style="float: right;padding-right: 10px;">7</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>129</td>
+                                        <td>No summary for method getEmailAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>134</td>
+                                        <td>No summary for method getNameAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>139</td>
+                                        <td>No summary for method getPhoneAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>241</td>
+                                        <td>Argument $query is missing from the Docblock of scopeVehiculo</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>241</td>
+                                        <td>Argument $vehiculo is missing from the Docblock of scopeVehiculo</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>241</td>
+                                        <td>No summary for method scopeVehiculo()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>29</td>
+                                        <td>No summary for property $fillable</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Teacher.php" id="Teacher.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Teacher.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>85</td>
+                                        <td>No summary for method getFamiliesAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>114</td>
+                                        <td>No summary for method getEmailAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>119</td>
+                                        <td>No summary for method getNameAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>124</td>
+                                        <td>No summary for method getPhoneAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>129</td>
+                                        <td>No summary for method getIsActiveAttribute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>36</td>
+                                        <td>No summary for property $dates</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="TeacherValidation.php" id="TeacherValidation.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            TeacherValidation.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>96</td>
+                                        <td>Argument $query is missing from the Docblock of scopeAction</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>96</td>
+                                        <td>Argument $action is missing from the Docblock of scopeAction</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>96</td>
+                                        <td>No summary for method scopeAction()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="User.php" id="User.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            User.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>154</td>
+                                        <td>No summary for method isAdmin()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>165</td>
+                                        <td>No summary for method isTeacher()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>174</td>
+                                        <td>No summary for method isStudent()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>184</td>
+                                        <td>No summary for method isEnterprise()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>204</td>
+                                        <td>Argument $value is missing from the Docblock of setPasswordAttribute</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>204</td>
+                                        <td>No summary for method setPasswordAttribute()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                    </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/App.html">\App</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on June 22nd, 2017 at 22:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

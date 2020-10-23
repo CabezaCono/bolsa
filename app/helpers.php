@@ -1,0 +1,489 @@
+<?php
+/**
+ * Helpers
+ *
+ * Esta clase contiene métodos de ayuda y estadistica
+ */
+
+use App\User;
+use App\Student;
+use App\Teacher;
+use App\Enterprise;
+
+/**
+ * EstadisticasUsuarios
+ *
+ * Este método cuenta con varios casos, en todos ellos devuelve según la optcion recibida el número de
+ * opciones iguales a ella en la base de datos.
+ *
+ * @param $opts opcion
+ * @return string
+ */
+
+function estadisticasUsuarios($opts)
+{
+//Hacerlo con un swich y que la función lleve un atributo, solo coger esa variable para no tener datos almacenados de forma innecesaria
+
+    switch ($opts) {
+        case "users":
+            return User::Active(1)->count();
+            break;
+        case "studentsNumero":
+            return Student::Active()->count();
+            break;
+        case "teachersNumero":
+            return Teacher::Active()->IsAdmin(0)->count();
+            break;
+        case "enterprisesNumero":
+            return Enterprise::Active()->count();
+            break;
+        case "adminsNumero":
+            return Teacher::Active()->IsAdmin(1)->count();
+            break;
+        case "studentsPorcentaje":
+            return number_format(Student::Active()->count() * 100 / User::Active(1)->count(), 2);
+            break;
+        case "teachersPorcentaje":
+            return number_format(Teacher::Active()->IsAdmin(0)->count() * 100 / User::Active(1)->count(), 2);
+            break;
+        case "enterprisesPorcentaje":
+            return number_format(Enterprise::Active()->count() * 100 / User::Active(1)->count(), 2);
+            break;
+        case "adminsPorcentaje":
+            return number_format(Teacher::Active()->IsAdmin(1)->count() * 100 / User::Active(1)->count(), 2);
+            break;
+
+        case "pendingStudents":
+            return Student::NoActive()->count();
+            break;
+
+        case "pendingStudentsPorcentaje":
+            return number_format(Student::NoActive()->count() * 100 / User::Active(1)->count(), 2);
+            break;
+
+        case "pendingEnterprises":
+            return Enterprise::NoActive()->count();
+            break;
+
+        case "pendingEnterprisesPorcentaje":
+            return number_format(Enterprise::NoActive()->count() * 100 / User::Active(1)->count(), 2);
+            break;
+
+        case "pendingTeachers":
+            return Teacher::NoActive()->count();
+            break;
+
+        case "pendingTeachersPorcentaje":
+            return number_format(Teacher::NoActive()->count() * 100 / User::Active(1)->count(), 2);
+            break;
+    }
+
+}
+
+/**
+ * Ofertas pendientes en centro de notificaciones
+ *
+ * Este método gestiona la burbuja que nos informa del número de notificaciones -de ofertas pendientes de validación-  que debemos resolver.
+ * @return string
+ */
+
+function offerPendingNotificationCenter()
+{
+    $notificationCenter = "";
+
+        // Empiezo a generar la lista
+        $notificationCenter .= '<li role="presentation" class="dropdown">';
+        $notificationCenter .= '<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">';
+        $notificationCenter .= '<i class="fa fa-envelope-o " style=""></i>';
+
+        //** CONTADOR TOTAL **//
+
+        $notificationCenter .= offerPendingNotificationCount();
+
+        //** FIN DE CONTADOR TOTAL **//
+
+        $notificationCenter .= '</a><ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">';
+        //** INICIO DE LA GENERACIÓN DE NOTIFICACIONES **//
+
+        $notificationCenter .= '<li><div class="slimScroll"><ul class="list-unstyled msg_list">';
+
+        $notificationCenter .= offerPendingTimeline();
+
+        //** FIN DE LA GENERACIÓN DE NOTIFICACIONES **//
+
+
+        if (\App\OfferSelection::AuthPending()->count() == 0 ) {
+            $notificationCenter .= '<li>No hay ofertas pendientes</li>';
+        }
+
+
+    return $notificationCenter;
+
+}
+
+
+/**
+ * OfferNotificacionCenter
+ * Muestra en el centro de notificaciones las ofertas pendientes por ser activadas
+ * @return string
+ */
+
+function offerNotificationCenter()
+{
+    $notificationCenter = "";
+
+        // Empiezo a generar la lista
+        $notificationCenter .= '<li role="presentation" class="dropdown">';
+        $notificationCenter .= '<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">';
+        $notificationCenter .= '<i class="fa fa-envelope-o " style=""></i>';
+
+        //** CONTADOR TOTAL **//
+
+        $notificationCenter .= offerNotificationCount();
+
+        //** FIN DE CONTADOR TOTAL **//
+
+        $notificationCenter .= '</a><ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">';
+        //** INICIO DE LA GENERACIÓN DE NOTIFICACIONES **//
+
+        $notificationCenter .= '<li><div class="slimScroll"><ul class="list-unstyled msg_list">';
+
+        $notificationCenter .= offerTimeline();
+
+        //** FIN DE LA GENERACIÓN DE NOTIFICACIONES **//
+
+
+        if (\App\Offer::NoActive()->count() == 0 ) {
+            $notificationCenter .= '<li>No hay ofertas pendientes</li>';
+        }
+
+        $notificationCenter .= '</ul></div></li><li>
+                      <div class="text-center">
+                        <a href="'.route("offers.inactive").'">
+                          <strong>Ver todas las Ofertas</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li></ul></li>';
+
+
+    return $notificationCenter;
+
+}
+
+/**
+ * userNotificationCenter
+ *
+ * Genera el numero de profesores, alumnos y empresas pendientes de validación
+ * @return string
+ */
+
+
+function userNotificationCenter()
+{
+    $notificationCenter = "";
+
+        // Empiezo a generar la lista
+        $notificationCenter .= '<li role="presentation" class="dropdown">';
+        $notificationCenter .= '<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">';
+        $notificationCenter .= '<i class="fa fa-hand-paper-o " style=""></i>';
+
+        //** CONTADOR TOTAL **//
+
+            $notificationCenter .= userNotificationCounter();
+
+        //** FIN DE CONTADOR TOTAL **//
+
+            $notificationCenter .= '</a><ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">';
+
+        //** GENERACIÓN DE LOS CONTADORES **//
+
+            if (auth()->user()->rol == "is_admin") {
+                //Genera el numero de profesores pendientes de validacion
+                $notificationCenter .= userNotificationCount("teacher");
+            }
+            //Genera el numero de empresas pendientes de validacion
+            $notificationCenter .= userNotificationCount("enterprise");
+
+            //Genera el numero de alumnos pendientes de validacion
+            $notificationCenter .= userNotificationCount("student");
+
+        //** FIN DE LA GENERACIÓN DE LOS CONTADORES **//
+
+
+        //** INICIO DE LA GENERACIÓN DE NOTIFICACIONES **//
+
+        $notificationCenter .= '<li><div class="slimScroll"><ul class="list-unstyled msg_list">';
+
+        $notificationCenter .= userTimeline();
+
+        //** FIN DE LA GENERACIÓN DE NOTIFICACIONES **//
+
+        if (auth()->user()->rol == "is_admin") {
+            if (\App\Teacher::NoActive()->count() == 0 && \App\Student::NoActive()->count() == 0 && \App\Enterprise::NoActive()->count() == 0) {
+                $notificationCenter .= '<li>No hay notificaciones pendientes</li>';
+            }
+        } else if (auth()->user()->rol == "is_teacher") {
+            if (\App\Student::NoActive()->count() == 0 && \App\Enterprise::NoActive()->count() == 0) {
+                $notificationCenter .= '<li>No hay notificaciones pendientes</li>';
+            }
+        }
+
+
+        $notificationCenter .= '</ul></div></li><li>
+                      <div class="text-center">
+                        <a href="'.route("user.inactive").'">
+                          <strong>Ver todos los usuarios</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li></ul></li>';
+
+
+    return $notificationCenter;
+
+}
+
+/**
+ * OffertTimeLine
+ * Genera un timeline con las ofertas en base a su fecha
+ * @return string
+ */
+
+function offerTimeline()
+{
+    $pending = "";
+    \Carbon\Carbon::setLocale("es");
+    foreach (\App\Offer::NoActive()->orderBy("created_at","desc")->get() as $offer) {
+
+            $pending .= '<li>';
+            $pending .= '<a href="' . route('offers.activate', $offer->id) . '">';
+            $pending .= '<span class="image"><img src="' . asset("images/".$offer->enterprise->user->role.".png") . '" alt="Profile Image" /></span>';
+            $pending .= '<span class="message">'.$offer->enterprise->user->name .' esta esperando a que validen su oferta<br>';
+            $pending .= '<span class="time pull-left" style="position:initial">' . $offer->created_at->diffForHumans() . '</span>';
+            $pending .= '<a href="'.route("offers.activate",$offer->id).'" class="btn btn-default pull-right" style="width: 35%;" type="submit">Validar <i class="fa fa-check"></i></a>';
+            $pending .= '</span>';
+            $pending .= '</a>';
+            $pending .= '<hr>';
+            $pending .= '</li>';
+
+    }
+
+    return $pending;
+}
+
+/**
+ * offerPendingTimeLine
+ * Genera las notificaciones de las ofertas pendientes para los alumnos y profesores
+ * @return string
+ */
+
+function offerPendingTimeline()
+{
+    $pending = "";
+    \Carbon\Carbon::setLocale("es");
+    foreach (\App\OfferSelection::AuthPending()->orderBy("created_at","desc")->get() as $selection) {
+
+        $pending .= '<li>';
+        $pending .= '<a href="' . route('offers.proffer', $selection->id) . '">';
+        $pending .= '<span class="image"><img src="' . asset("images/".$selection->teacher->user->role.".png") . '" alt="Profile Image" /></span>';
+        $pending .= '<span class="message"> ¡Enhorabuena! '.$selection->teacher->user->name .' '.$selection->teacher->apellidos .' tiene una oferta para ti<br>';
+        $pending .= '<span class="time pull-left" style="position:initial">' . $selection->created_at->diffForHumans() . '</span>';
+        $pending .= '<a href="'.route("offers.proffer",$selection->id).'" class="btn btn-default pull-right" style="width: 35%;" type="submit">Ver Oferta</a>';
+        $pending .= '</span>';
+        $pending .= '</a>';
+        $pending .= '<hr>';
+        $pending .= '</li>';
+
+    }
+
+    return $pending;
+}
+
+/**
+ * usertimeline
+ *
+ * Genera las ofertas que los usuarios tengan pendientes
+ * @return string
+ */
+
+
+function userTimeline()
+{
+    $pending = "";
+    \Carbon\Carbon::setLocale("es");
+    foreach (\App\User::Active(0)->orderBy("created_at","desc")->get() as $model) {
+
+        if(auth()->user()->rol == "is_teacher" && $model->rol == "is_teacher"){
+            $pending .="";
+        }else{
+            $pending .= '<li>';
+            $pending .= '<a href="' . route('user.profile', $model->id) . '">';
+            $pending .= '<span class="image"><img src="' . asset("images/".$model->role.".png") . '" alt="Profile Image" /></span>';
+            $pending .= '<span>';
+            $pending .= '<span><b>' . $model->name . '</b></span>';
+            $pending .= '</span>';
+            $pending .= '<span class="message">Este usuario está esperando que lo validen ';
+            $pending .= ''.Form::open(['method' => 'PUT', 'route' => ["user.toggle.active", $model->id]]) . '';
+
+            $pending .= '<span class="time" style="position:initial">' . $model->created_at->diffForHumans() . '</span>';
+            $pending .= '<button href="#" class="btn btn-default pull-right" type="submit">Validar <i class="fa fa-check"></i></button>';
+            $pending .= '' . Form::close() . '';
+            $pending .= '</span>';
+            $pending .= '</a>';
+            $pending .= '</li>';
+        }
+
+    }
+
+    return $pending;
+}
+
+/**
+ * userNotificationCounter
+ * Genera el globo  cn el numero de notificaciones pendientes
+ * @return string
+ */
+
+
+function userNotificationCounter()
+{
+    if (auth()->user()->rol == "is_admin") {
+        if (\App\Student::NoActive()->count() + \App\Enterprise::NoActive()->count() + \App\Teacher::NoActive()->count() != 0) {
+
+            $count_total = \App\Student::NoActive()->count() + \App\Enterprise::NoActive()->count() + \App\Teacher::NoActive()->count();
+            return "<span class='badge bg-green' >" . $count_total . "</span >";
+        } 
+    }elseif(auth()->user()->rol == "is_teacher"){
+            if (\App\Student::NoActive()->count() + \App\Enterprise::NoActive()->count() != 0) {
+                $count_total = \App\Student::NoActive()->count() + \App\Enterprise::NoActive()->count();
+                return '<span class="badge bg-green" style="font-size: 9px;">'.$count_total . '</span >';
+            }
+
+        }
+}
+
+/**
+ * UserNotificationCount
+ * Genera el contador en base al tipo de usuario
+ * @param $type tipo de usuario
+ * @return null|string
+ */
+
+function userNotificationCount($type)
+{
+    $count = "";
+    $opts = [];
+    switch ($type) {
+        case "teacher":
+            $opts = ["model" => \App\Teacher::class, "user" => "PROFESORES", "route" => "teacher.inactive"];
+            break;
+
+        case "student":
+            $opts = ["model" => \App\Student::class, "user" => "ALUMNOS", "route" => "student.inactive"];
+            break;
+
+        case "enterprise":
+            $opts = [ "model" => \App\Enterprise::class, "user" => "EMPRESAS", "route" => "enterprise.inactive" ];
+            break;
+    }
+
+    if ($opts["model"]::NoActive()->count() != 0) {
+        $count .= '<li><div class="text-center"><a href="' . route($opts["route"]) . '">';
+        $count .= "<strong>";
+
+        //CAMBIO EL COLOR DEL LABEL DEPENDIENDO DEL NUMERO DE USUARIOS PENDIENTES TENGA
+        if($opts["model"]::NoActive()->count() >= 20){
+            $count .= '<span class="label label-danger pull-left">';
+        }elseif($opts["model"]::NoActive()->count() >= 10){
+            $count .= '<span class="label label-warning pull-left">';
+        }elseif ($opts["model"]::NoActive()->count() < 10){
+            $count .= '<span class="label label-success pull-left">';
+        }
+
+        $count .= ''. $opts["model"]::NoActive()->count() . '</span> ' . $opts["user"] . ' sin validar </strong>';
+        $count .= '</a></div></li>';
+
+        return $count;
+    } else
+        return null;
+
+}
+
+/**
+ * offerPendingNotificacionCount
+ * Genera el contador de las ofertas pendientes
+ * @return string
+ */
+
+function offerPendingNotificationCount()
+{
+    if (\App\OfferSelection::AuthPending()->count() > 0 ){
+        return '<span class="badge bg-green" style="font-size: 9px;">' . \App\OfferSelection::AuthPending()->count() . '</span >';
+
+    }else{
+        return "";
+    }
+}
+
+/**
+ * get_model_selectable_By_name
+ *
+ * transofrma un objeto a array para ser tratado
+ * @param $obj objeto
+ * @return array
+ */
+
+
+function get_model_selectable_by_name($obj)
+{
+    $array = [];
+    foreach ($obj as $var) {
+        $array[$var->id] = $var->name;
+    }
+    return $array;
+}
+
+function get_model_all_id($obj)
+{
+    $array = [];
+    foreach ($obj as $var) {
+        $array[] = $var->id;
+    }
+    return $array;
+}
+
+/**
+ * get_Childs
+ * Genera un array con childs
+ * @param $parent padre
+ * @param $child hijos
+ * @return array
+ */
+
+function get_childs($parent,$child){
+    $model = [];
+    foreach($parent as $ip){
+        $model[] = $ip->{$child};
+    }
+    return $model;
+}
+
+/**
+ * OfferNotificationCount
+ * genera el contador de las ofertas no activas
+ * @return string
+ */
+
+function offerNotificationCount()
+{
+    if (\App\Offer::NoActive()->count() > 0 ){
+        return '<span class="badge bg-green" style="font-size: 9px;">' . \App\Offer::NoActive()->count() . '</span >';
+
+    }else{
+        return "";
+    }
+}
+
+
+

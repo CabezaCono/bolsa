@@ -1,0 +1,288 @@
+<?php
+/**
+ * Clase Profesor
+ */
+
+namespace App;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Teacher
+ * Gestiona la informacón relativa a los profesores
+ *
+ * @package App
+ */
+class Teacher extends Model
+{
+    /**
+     * El uso de SoftDelete nos permite un borrado seguro.
+     */
+    use SoftDeletes;
+
+    /**
+     * Filliable
+     *
+     *  Datos que Eloquent puede tratar sobre el objeto
+     * @var array
+     */
+    protected $fillable = [
+        'apellidos', 'nrp_expediente', 'is_admin'
+    ];
+
+
+    protected $dates = ['deleted_at'];
+
+
+    /** RELACIONES **/
+
+
+
+
+    /**
+     * User
+     * Un profesor pertenece a un usuario
+     * @return mixed
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Validations
+     * un profesor puede tener varias validaciones asociadas
+     * @return mixed
+     */
+    public function validations()
+    {
+        return $this->hasMany('App\TeacherValidation')->orderBy("created_at", "desc");
+    }
+
+    /**
+     * Selections
+     * Un profesor puede estar suscrito a varias ofertas
+     * @return mixed
+     */
+    public function selections()
+    {
+        return $this->hasMany('App\OfferSelection')->orderBy("created_at", "desc");
+    }
+
+    /**
+     * Cicles
+     * Un profesor puede pertenecer a varios ciclos
+     * @return mixed
+     */
+    public function cicles()
+    {
+        return $this->belongsToMany('App\Cicle', 'cicle_teachers', 'teacher_id', 'cicle_id')->withPivot('cicle_id', 'promocion')->withTimestamps();
+    }
+
+    //Relacion con families
+    public function getFamiliesAttribute()
+    {
+        $ciclos = $this->cicles;
+        $familias = [];
+        foreach ($ciclos as $ciclo){
+            $familias[$ciclo->family->id] = $ciclo->family;
+        }
+        return $familias;
+    }
+
+
+
+
+
+    /**
+     * Offerts
+     * Devuelve las ofertas del profesor
+     * @return array
+     */
+
+    public function getOffersAttribute()
+    {
+        $model = [];
+        foreach ($this->selections as $selection) {
+            $model[$selection->offer->id] = $selection->offer;
+        }
+        return $model;
+    }
+
+    public function getEmailAttribute()
+    {
+        return $this->user->email;
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->user->name;
+    }
+
+    public function getPhoneAttribute()
+    {
+        return $this->user->phone;
+    }
+
+    public function getIsActiveAttribute()
+    {
+        return $this->user->is_active;
+    }
+
+
+    /** SETTERS **/
+
+
+    /**
+     * Administrador
+     *
+     * Este método le aplica el rol al profesor de administrador
+     * @param $value valor
+     */
+    public function setIsAdminAttribute($value)
+    {
+        ($value) ? $is_admin = 1 : $is_admin = 0;
+        $this->attributes['is_admin'] = $is_admin;
+    }
+
+
+
+
+
+
+
+    /** SCOPES **/
+
+    /**
+     * Apellidos
+     * Busca por apellidos
+     * @param $query consulta
+     * @param $apellidos apellidos
+     */
+    public function scopeApellidos($query, $apellidos)
+    {
+
+    }
+    /**
+     * NRP
+     *
+     * Busca por NRP (Número regional de profesor).
+     * @param $query consulta
+     * @param $nrp NRP
+     */
+
+    public function scopeNrp($query, $nrp)
+    {
+
+    }
+
+    /**
+     * isAdmin
+     *
+     * Busca en base al ROL ADMIN
+     * @param $query consulta
+     * @param $isadmin varialbe a comparar
+     */
+    public function scopeIsAdmin($query, $isadmin)
+    {
+        if (trim($isadmin) != '') {
+            $query->where('is_admin', '=', $isadmin);
+        }
+
+    }
+
+    /**
+     * No Active
+     * Busca profesors no activos
+     * @param $query consulta
+     */
+
+    public function scopeNoActive($query)
+    {
+        $query->with("user")->whereHas('user', function ($q) {
+            //Reutilizo el scopeActive del modelo User.
+            $q->Active(0);
+        });
+    }
+    /**
+     * Active
+     * Busca profesores activos
+     * @param $query consulta
+     */
+
+    public function scopeActive($query)
+    {
+        $query->with("user")->whereHas('user', function ($q) {
+            //Reutilizo el scopeActive del modelo User.
+            $q->Active(1);
+        });
+    }
+
+
+    /**
+     * Search
+     * Busca valiendose de los metodos apropiados para cada tipo de dato segun el selector
+     * @param $query consulta
+     * @param Request $request datos y tipo de metodo
+     */
+    public function scopeSearch($query, Request $request)
+    {
+        //Analizo si tiene método de búsqueda y si tiene el campo search
+        if ($request->has("method") && $request->has("search")) {
+
+            if (trim($request->get("search")) != '') {
+
+                //Asignación del término de búsqueda. El use no permite métodos.
+                $search = $request->get("search");
+
+
+                //Hago un switch con los métodos de búsqueda (Por nombre, apellidos, nrp, etc) y ejecuto el scope con el campo búsqueda
+                switch ($request->get("method")) {
+
+                    case "nombre":
+                        //Refactorizar
+                        $query->with("user")->whereHas('user', function ($q) use ($search) {
+                            $q->Name($search);
+
+                        });
+                        break;
+
+                    case "apellidos":
+                        //usar this->scopeApellidos
+                        $query->where('apellidos', 'LIKE', "%" . $search . "%");
+
+                        break;
+
+                    case "nrp":
+                        //usar this->scopeNrp
+                        $query->where('nrp_expediente', '=', "$search");
+
+                        break;
+
+                    case "telefono":
+                        //Refactorizar
+                        $query->with("user")->whereHas('user', function ($q) use ($search) {
+                            $q->Telefono($search);
+                        });
+
+                        break;
+
+                    case "email":
+                        //Refactorizar
+                        $query->with("user")->whereHas('user', function ($q) use ($search) {
+                            $q->Email($search);
+                        });
+
+                        break;
+
+                }
+
+            }
+
+
+        }
+    }
+
+}

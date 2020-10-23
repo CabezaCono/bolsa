@@ -1,0 +1,165 @@
+<?php
+/**
+ * Controlador de Ciclos
+ *
+ * Este controlador permite la gestión de la informacón relativa a los Ciclos
+ *
+ *
+ * @package App\Http\Controllers
+ */
+
+namespace App\Http\Controllers;
+
+
+/**
+ *
+ * REQUEST
+ *
+ * Obtiene datos de formularios
+ *
+ */
+use Illuminate\Http\Request;
+
+/**
+ *
+ * Modelos
+ *
+ * Modelos usados
+ *
+ * @see App\Cicle;
+ * @see App\Family;
+ *
+ */
+
+use App\Cicle;
+use App\Family;
+
+
+/**
+ *Sesión
+ *
+ * Variables de sessión
+ * */
+use Illuminate\Support\Facades\Session;
+
+/**
+ *
+ *Class Cicle Controller
+ *
+ * Atiende las peticiones relativas a la gestión de Ciclos.
+ *
+ * @package App\Http\Controllers
+ */
+
+class CicleController extends Controller
+{
+    /**
+     *  Muestra todos los ciclos ordenados.
+     *
+     * @param \Illuminate\Http\Request  $request  contiene un criterio para filtro.
+     * @var App\Cicle $formatigeCicles ciclos formativos
+     * @return void
+     *
+     */
+    public function index(Request $request)
+    {
+        $formativeCicles = Cicle::Name($request)->get();
+        return view("cicles.index",compact("formativeCicles","request"));
+    }
+
+    /**
+     * Muesta el formulario para crear un nuevo ciclo
+     *
+     * @var App\Family $familys contiene todas las familias profesionales.
+     * @return void
+     *
+     */
+    public function create()
+    {
+        $this->authorize('create',Cicle::class);
+        $familys = get_model_selectable_by_name(Family::all());
+        return view('cicles.create',compact("familys"));
+    }
+
+    /**
+     * Almacena un nuevo ciclo en bbdd
+     *
+     *
+     * @param \Illuminate\Http\Request  $request   contiene la información del formulario del nuevo ciclo.
+     * @var App\Cicle $cicle ciclo creado en base a los datos de entrada
+     * @return  $cicle
+     */
+    public function store(Request $request)
+    {
+        $this->authorize('create',Cicle::class);
+        $cicle_opts = [
+            "name" => $request->get("name"),
+            "tipo" => $request->get("tipo"),
+            "plan" => $request->get("plan"),
+            "family_id" => $request->get("family_id")
+        ];
+        $cicle = new Cicle($cicle_opts);
+        $cicle->save();
+        Session::flash('message', 'Ciclo Formativo agregado correctamente');
+        return redirect()->route("cicle.index");
+    }
+
+    /**
+     * Muestra la vista completa de un ciclo
+     *
+     * @param  \App\Cicle $cicle objeto con la información del ciclo solicitado.
+     * @return void
+     */
+    public function show(Cicle $cicle)
+    {
+        $this->authorize('view',$cicle);
+        return view("cicles.show",compact("cicle"));
+    }
+
+    /**
+     * Muesta el formulario para editar un ciclo
+     *
+     * @param  \App\Cicle  $cicle , datos del ciclo
+     * @var \App\Family, $familys , datos de las familias profesionales.
+     * return void
+     */
+    public function edit(Cicle $cicle)
+    {
+        $this->authorize('update',$cicle);
+        $familys = get_model_selectable_by_name(Family::all());
+        return view("cicles.edit",compact("cicle","familys"));
+    }
+
+    /**
+     * Actualiza el ciclo en la bbdd
+     *
+     * @param  \Illuminate\Http\Request  $request datos recogidos del formulario
+     * @param  \App\Cicle  $cicle  ciclo a editar.
+     * @return $cicle
+     */
+    public function update(Request $request, Cicle $cicle)
+    {
+        $this->authorize('update',$cicle);
+        $cicle->fill(["name" => $request->get("name"),"tipo"=>$request->get("tipo"),"plan"=>$request->get("plan")]);
+        $cicle->save();
+        Session::flash('message', 'Ciclo Profesional editado correctamente');
+        return redirect()->route("cicle.index");
+    }
+
+    /**
+     * Elimina el ciclo de la bbdd
+     *
+     * Utiliza la función soft delete, por lo que no se borra de la bbdd totalmente.
+     *
+     * @param  \App\Cicle  $cicle ciclo a ser borrado.
+     * @return void
+     */
+    public function destroy(Cicle $cicle)
+    {
+        $this->authorize('delete',$cicle);
+        $name = $cicle->name;
+        $cicle->delete();
+        Session::flash('message', 'El ciclo formativo '.$name.' se ha eliminiado correctamente');
+        return redirect()->route("cicle.index");
+    }
+}

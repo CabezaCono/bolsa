@@ -1,0 +1,74 @@
+<?php
+/**
+ * Modelo de  Family
+ */
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+
+/**
+ * Class Family
+ *
+ * Incluye las relaciones de familia y filtros de búsqueda
+ * @package App
+ */
+
+class Family extends Model
+{
+
+
+    /**
+     * Filliable
+     *
+     *  Datos que Eloquent puede tratar sobre un objeto family
+     * @var array
+     */
+
+    protected $fillable =[
+       'name',"created_at"
+    ];
+
+    /** RELACIONES **/
+
+    /**
+     * Ciclos
+     *
+     * Una familia tiene muchos ciclos
+     * @return mixed
+     */
+    public function cicles()
+    {
+        return $this->hasMany('App\Cicle');
+    }
+
+    /**
+     * Oferta
+     * Una familai tieen varias ofertas
+     * @return mixed
+     */
+
+    public function offer()
+    {
+        return $this->hasMany('App\Offer');
+    }
+
+    /** SCOPES **/
+
+    /**
+     * Name
+     * Búsqueda en base al nombre
+     * @param $query consulta que será modificada
+     * @param Request $request datos para comparar
+     */
+
+    public function scopeName($query,Request $request)
+    {
+        $name = $request->get("name");
+        if (trim($name) != '') {
+            $query->where('name','LIKE',"%$name%");
+        }
+    }
+}
+

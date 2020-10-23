@@ -1,0 +1,234 @@
+<?php
+/**
+ * Modelo de empresa
+ */
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+
+/**
+ * Class Enterprise
+ *
+ * Incluye las relaciones de empesa y filtros de búsqueda
+ * @package App
+ */
+
+
+class Enterprise extends Model
+{
+
+
+    use SoftDeletes;
+
+    /**
+     * Filliable
+     *
+     *  Datos que Eloquent puede tratar sobre un objeto empresa
+     * @var array
+     */
+    protected $fillable = [
+        'descripcion', 'sociedad', 'cif','fax','fecha_fundacion','web',
+        'pais','ciudad','score','min_empleados','max_empleados'
+    ];
+
+    /**
+     * @var $dates campo para el borrado seguro
+     * @var array
+     */
+
+    protected $dates=['deleted_at'];
+
+
+    /** RELACIONES **/
+
+    /**
+     * User
+     *
+     * Una empresa pertenece a un usuario
+     * @return mixed
+     */
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Offers
+     *
+     * Una empresa puede tener mucha ofertas
+     * @return mixed
+     */
+    public function offers()
+    {
+        return $this->hasMany('App\Offer');
+    }
+
+
+    /** GETTERS **/
+
+    /**
+     *getName
+     *
+     *Devuelve el nombre de la empresa
+     *
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        return $this->user->name;
+    }
+
+    public function setScoreAttribute($value)
+    {
+        if(is_null($value))
+            $this->score = 0;
+
+        return $value;
+    }
+
+    public function getEmailAttribute()
+    {
+        return $this->user->email;
+    }
+
+    public function getPhoneAttribute()
+    {
+        return $this->user->phone;
+    }
+
+
+
+    /** SCOPES **/
+    /**
+     * Descripción
+     *
+     * Busca en base a la descripción.
+     * @param $query consulta que será modificada
+     *
+     * @param Request $request datos del formulario para comprarar
+     */
+    public function scopeDescripcion($query, Request $request){
+
+
+        $descripcion="%".$request->datos."%";
+
+        $query->where('descripcion', $descripcion);
+
+    }
+
+    /**
+     *
+     * Active
+     * scope para isActive de Usuario (vinculado con profesor)
+     *
+     * @param $query consulta que será modificada
+     *
+
+     *
+     */
+    public function scopeActive($query)
+    {
+        $query->with("user")->whereHas('user', function($q)
+        {
+            //Reutilizo el scopeActive del modelo User.
+            $q->Active(1);
+        });
+    }
+
+    /**
+     * No activo
+     * @param $query consulta que será modificada
+     */
+    public function scopeNoActive($query)
+    {
+        $query->with("user")->whereHas('user', function($q)
+        {
+            //Reutilizo el scopeActive del modelo User.
+            $q->Active(0);
+        });
+    }
+
+    /**
+     * scope para la búsqueda (por métodos de búsqueda)
+     *
+     * @param $query consulta que será modificada
+     *
+     * @param Request $request datos del formulario para comprarar
+     */
+    public function scopeSearch($query,Request $request)
+{
+    //Analizo si tiene método de búsqueda y si tiene el campo search
+    if($request->has("method") && $request->has("search")){
+
+        if(trim($request->get("search")) != ''){
+
+            //Asignación del término de búsqueda. El use no permite métodos.
+            $search = $request->get("search");
+
+
+            //Hago un switch con los métodos de búsqueda (Por nombre, apellidos, nrp, etc) y ejecuto el scope con el campo búsqueda
+            switch ($request->get("method")){
+
+                case "name":
+                    //Refactorizar
+                    $query->with("user")->whereHas('user', function($q) use ($search)
+                    {
+                        $q->Name($search);
+
+                    });
+                    break;
+
+                case "web":
+                    //usar this->scopeWeb
+                    $query->where('web','LIKE',"%".$search."%");
+
+                    break;
+
+                case "cif":
+                    //usar this->scopeCif
+                    $query->where('cif','=',"$search");
+
+                    break;
+
+                case "descripcion":
+                    //usar this->scopedescricion
+                    $query->where('descripcion','LIKE',"%$search%");
+
+                    break;
+
+                case "sociedad":
+                    //usar this->scopesociedad
+                    $query->where('sociedad','LIKE',"%$search%");
+
+                    break;
+
+                case "telefono":
+                    //Refactorizar
+                    $query->with("user")->whereHas('user', function($q) use ($search)
+                    {
+                        $q->Telefono($search);
+                    });
+
+                    break;
+
+                case "email":
+                    //Refactorizar
+                    $query->with("user")->whereHas('user', function($q) use ($search)
+                    {
+                        $q->Email($search);
+                    });
+
+                    break;
+
+            }
+
+        }
+
+
+    }
+}
+}

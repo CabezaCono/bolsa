@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/App.html">\App</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">187</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2069693638"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-2069693638" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-288535482"></a>
+                                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
+            </div>
+            <div id="namespace-288535482" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-840440797"></a>
+                                <a href="../namespaces/App.Console.html" style="margin-left: 30px; padding-left: 0">Console</a>
+            </div>
+            <div id="namespace-840440797" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Console.Kernel.html">Kernel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-392684822"></a>
+                                <a href="../namespaces/App.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+            </div>
+            <div id="namespace-392684822" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Exceptions.Handler.html">Handler</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2025140537"></a>
+                                <a href="../namespaces/App.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-2025140537" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1455245496"></a>
+                                <a href="../namespaces/App.Http.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
+            </div>
+            <div id="namespace-1455245496" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1021490263"></a>
+                                <a href="../namespaces/App.Http.Controllers.Auth.html" style="margin-left: 30px; padding-left: 0">Auth</a>
+            </div>
+            <div id="namespace-1021490263" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Http.Controllers.Auth.ForgotPasswordController.html">ForgotPasswordController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.Auth.LoginController.html">LoginController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.Auth.RegisterController.html">RegisterController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.Auth.ResetPasswordController.html">ResetPasswordController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Http.Controllers.CicleController.html">CicleController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.Controller.html">Controller</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.EnterpriseController.html">EnterpriseController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.FamilyController.html">FamilyController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.HomeController.html">HomeController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.StudentController.html">StudentController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.TeacherController.html">TeacherController</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Controllers.UserController.html">UserController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1638954053"></a>
+                                <a href="../namespaces/App.Http.Middleware.html" style="margin-left: 30px; padding-left: 0">Middleware</a>
+            </div>
+            <div id="namespace-1638954053" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Http.Middleware.EncryptCookies.html">EncryptCookies</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Middleware.NoRolMiddleware.html">NoRolMiddleware</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Middleware.OneSelfMiddleware.html">OneSelfMiddleware</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Middleware.RedirectIfAuthenticated.html">RedirectIfAuthenticated</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Middleware.RolMiddleware.html">RolMiddleware</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Middleware.TrimStrings.html">TrimStrings</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Middleware.VerifyCsrfToken.html">VerifyCsrfToken</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2088981617"></a>
+                                <a href="../namespaces/App.Http.Requests.html" style="margin-left: 30px; padding-left: 0">Requests</a>
+            </div>
+            <div id="namespace-2088981617" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Http.Requests.EnterpriseStoreRequest.html">EnterpriseStoreRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.EnterpriseUpdateRequest.html">EnterpriseUpdateRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.OfferStoreRequest.html">OfferStoreRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.OfferUpdateRequest.html">OfferUpdateRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.ProfessionalFamilyStoreRequest.html">ProfessionalFamilyStoreRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.ProfessionalFamilyUpdateRequest.html">ProfessionalFamilyUpdateRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.StudentStoreRequest.html">StudentStoreRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.StudentUpdateRequest.html">StudentUpdateRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.TeacherStoreRequest.html">TeacherStoreRequest</a></li>
+                                                    <li class="class"><a href="../classes/App.Http.Requests.TeacherUpdateRequest.html">TeacherUpdateRequest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Http.Kernel.html">Kernel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2086628625"></a>
+                                <a href="../namespaces/App.Mail.html" style="margin-left: 30px; padding-left: 0">Mail</a>
+            </div>
+            <div id="namespace-2086628625" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Mail.newOffertCreated.html">newOffertCreated</a></li>
+                                                    <li class="class"><a href="../classes/App.Mail.newOffertToValidate.html">newOffertToValidate</a></li>
+                                                    <li class="class"><a href="../classes/App.Mail.newRegisteredEnterprise.html">newRegisteredEnterprise</a></li>
+                                                    <li class="class"><a href="../classes/App.Mail.newRegisteredUser.html">newRegisteredUser</a></li>
+                                                    <li class="class"><a href="../classes/App.Mail.OffertAssigned.html">OffertAssigned</a></li>
+                                                    <li class="class"><a href="../classes/App.Mail.TeacherInvitation.html">TeacherInvitation</a></li>
+                                                    <li class="class"><a href="../classes/App.Mail.ValidationOk.html">ValidationOk</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1478824833"></a>
+                                <a href="../namespaces/App.Policies.html" style="margin-left: 30px; padding-left: 0">Policies</a>
+            </div>
+            <div id="namespace-1478824833" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Policies.CiclePolicy.html">CiclePolicy</a></li>
+                                                    <li class="class"><a href="../classes/App.Policies.EnterprisePolicy.html">EnterprisePolicy</a></li>
+                                                    <li class="class"><a href="../classes/App.Policies.FamilyPolicy.html">FamilyPolicy</a></li>
+                                                    <li class="class"><a href="../classes/App.Policies.OfferPolicy.html">OfferPolicy</a></li>
+                                                    <li class="class"><a href="../classes/App.Policies.StudentPolicy.html">StudentPolicy</a></li>
+                                                    <li class="class"><a href="../classes/App.Policies.TeacherPolicy.html">TeacherPolicy</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-394984854"></a>
+                                <a href="../namespaces/App.Providers.html" style="margin-left: 30px; padding-left: 0">Providers</a>
+            </div>
+            <div id="namespace-394984854" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Providers.AppServiceProvider.html">AppServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/App.Providers.AuthServiceProvider.html">AuthServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/App.Providers.BroadcastServiceProvider.html">BroadcastServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/App.Providers.EventServiceProvider.html">EventServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/App.Providers.RouteServiceProvider.html">RouteServiceProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Cicle.html">Cicle</a></li>
+                                                    <li class="class"><a href="../classes/App.Enterprise.html">Enterprise</a></li>
+                                                    <li class="class"><a href="../classes/App.Family.html">Family</a></li>
+                                                    <li class="class"><a href="../classes/App.OfferSelection.html">OfferSelection</a></li>
+                                                    <li class="class"><a href="../classes/App.OfferSubscription.html">OfferSubscription</a></li>
+                                                    <li class="class"><a href="../classes/App.Student.html">Student</a></li>
+                                                    <li class="class"><a href="../classes/App.Teacher.html">Teacher</a></li>
+                                                    <li class="class"><a href="../classes/App.TeacherValidation.html">TeacherValidation</a></li>
+                                                    <li class="class"><a href="../classes/App.User.html">User</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small></small>helpers.php</h1>
+                    <p><em>Helpers</em></p>
+                    <p>Esta clase contiene métodos de ayuda y estadistica</p>
+
+                    
+                    
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+            
+                        <div class="row-fluid">
+                <section class="span8 content file">
+                    <h2>Functions</h2>
+                </section>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_estadisticasUsuarios" name="method_estadisticasUsuarios" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">estadisticasUsuarios()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">estadisticasUsuarios(  <span class="argument">$opts</span>) : string</pre>
+                <p><em>EstadisticasUsuarios</em></p>
+                <p>Este método cuenta con varios casos, en todos ellos devuelve según la optcion recibida el número de
+opciones iguales a ella en la base de datos.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$opts </td>
+                                <td><p>opcion</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offerPendingNotificationCenter" name="method_offerPendingNotificationCenter" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">offerPendingNotificationCenter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offerPendingNotificationCenter() : string</pre>
+                <p><em>Ofertas pendientes en centro de notificaciones</em></p>
+                <p>Este método gestiona la burbuja que nos informa del número de notificaciones -de ofertas pendientes de validación-  que debemos resolver.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offerNotificationCenter" name="method_offerNotificationCenter" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">offerNotificationCenter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offerNotificationCenter() : string</pre>
+                <p><em>OfferNotificacionCenter
+Muestra en el centro de notificaciones las ofertas pendientes por ser activadas</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_userNotificationCenter" name="method_userNotificationCenter" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">userNotificationCenter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">userNotificationCenter() : string</pre>
+                <p><em>userNotificationCenter</em></p>
+                <p>Genera el numero de profesores, alumnos y empresas pendientes de validación</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offerTimeline" name="method_offerTimeline" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">offerTimeline()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offerTimeline() : string</pre>
+                <p><em>OffertTimeLine
+Genera un timeline con las ofertas en base a su fecha</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offerPendingTimeline" name="method_offerPendingTimeline" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">offerPendingTimeline()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offerPendingTimeline() : string</pre>
+                <p><em>offerPendingTimeLine
+Genera las notificaciones de las ofertas pendientes para los alumnos y profesores</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_userTimeline" name="method_userTimeline" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">userTimeline()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">userTimeline() : string</pre>
+                <p><em>usertimeline</em></p>
+                <p>Genera las ofertas que los usuarios tengan pendientes</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_userNotificationCounter" name="method_userNotificationCounter" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">userNotificationCounter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">userNotificationCounter() : string</pre>
+                <p><em>userNotificationCounter
+Genera el globo  cn el numero de notificaciones pendientes</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_userNotificationCount" name="method_userNotificationCount" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">userNotificationCount()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">userNotificationCount(  <span class="argument">$type</span>) : null|string</pre>
+                <p><em>UserNotificationCount
+Genera el contador en base al tipo de usuario</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$type </td>
+                                <td><p>tipo de usuario</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    null|string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offerPendingNotificationCount" name="method_offerPendingNotificationCount" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">offerPendingNotificationCount()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offerPendingNotificationCount() : string</pre>
+                <p><em>offerPendingNotificacionCount
+Genera el contador de las ofertas pendientes</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_model_selectable_by_name" name="method_get_model_selectable_by_name" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">get_model_selectable_by_name()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_model_selectable_by_name(  <span class="argument">$obj</span>) : array</pre>
+                <p><em>get_model_selectable_By_name</em></p>
+                <p>transofrma un objeto a array para ser tratado</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$obj </td>
+                                <td><p>objeto</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_model_all_id" name="method_get_model_all_id" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">get_model_all_id()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_model_all_id(  <span class="argument">$obj</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$obj </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_childs" name="method_get_childs" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">get_childs()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_childs(  <span class="argument">$parent</span>,   <span class="argument">$child</span>) : array</pre>
+                <p><em>get_Childs
+Genera un array con childs</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$parent </td>
+                                <td><p>padre</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$child </td>
+                                <td><p>hijos</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offerNotificationCount" name="method_offerNotificationCount" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">offerNotificationCount()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offerNotificationCount() : string</pre>
+                <p><em>OfferNotificationCount
+genera el contador de las ofertas no activas</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">helpers.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/helpers.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/App.html">\App</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on June 22nd, 2017 at 22:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

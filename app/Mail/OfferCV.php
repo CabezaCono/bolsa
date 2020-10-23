@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Mail;
+
+use Faker\Provider\File;
+use Illuminate\Bus\Queueable;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\User;
+use App\Offer;
+
+use Illuminate\Http\UploadedFile;
+
+class OfferCV extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+
+
+    public $user;
+    public $cv;
+
+    public function __construct(User $user, Offer $offer, $cv)
+    {
+        $this->user = $user;
+        $this->offer = $offer;
+        $this->cv = $cv;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->view('Mails.CVEnterprise')
+            ->attach($this->cv,['as' => 'curriculum.pdf', 'mime' => 'application/pdf']);
+    }
+}

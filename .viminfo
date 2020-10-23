@@ -1,0 +1,37 @@
+# Vim 7.4 generó este archivo "viminfo".
+# Puede editarlo, ¡sólo si tiene cuidado!
+
+# Valor de 'encoding' cuando se escribió este archivo
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Historia de Línea de órdenes (de lo más nuevo a lo más antiguo):
+
+# Historia de Cadena de búsqueda (de lo más nuevo a lo más antiguo):
+
+# Historia de Expresión (de lo más nuevo a lo más antiguo):
+
+# Historia de Línea de entrada (de lo más nuevo a lo más antiguo):
+
+# Historia de Línea de entrada (de lo más nuevo a lo más antiguo):
+
+# Registros:
+""-	CHAR	0
+	t
+
+# Marcas en el archivo:
+'0  3  14  ~/.env
+
+# Lista de saltos (el más reciente va primero):
+-'  3  14  ~/.env
+-'  1  0  ~/.env
+
+# Historia de las marcas en los archivos (de la más reciente a la más antigua):
+
+> ~/.env
+	"	3	14
+	^	3	15
+	.	3	14
+	+	3	14
